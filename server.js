@@ -1,7 +1,7 @@
 var config = require('getconfig');
 var bucker = require('bucker').createLogger();
 var redis = require("redis");
-var uuid = require('node-uuid');
+var uuid = require('uuid');
 var moment = require('moment');
 var githubhook = require('githubhook');
 var client = redis.createClient(config.redis.port, config.redis.host);
