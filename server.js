@@ -16,7 +16,7 @@ github.listen();
 github.on('*', function (event, repo, ref, data) {
     bucker.log('sending ' + repo + ' ' + ref + ' event');
 
-    event = {
+    eventData = {
         id: uuid.v1(),
         type: 'github',
         parent_id: '',
@@ -24,5 +24,5 @@ github.on('*', function (event, repo, ref, data) {
         payload: { 'repo': repo, 'ref': ref, 'data': data }
     };
 
-    client.publish('github', JSON.stringify(event, null, 2));
+    client.publish('github', JSON.stringify(eventData, null, 2));
 });
