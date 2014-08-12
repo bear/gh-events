@@ -20,6 +20,8 @@
     "bucker": "^1.0.11",
     "redis": "^0.12.1",
     "getconfig": "^0.3.0",
-    "githubhook": "^1.1.2"
+    "githubhook": "^1.1.2",
+    "node-uuid": "^1.4.1",
+    "moment": "^2.8.1"
   }
 }
