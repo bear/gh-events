@@ -1,0 +1,25 @@
+{
+  "name": "gh-events",
+  "version": "0.1.0",
+  "description": "Publish GitHub Events to Redis PubSub",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bear/gh-events.git"
+  },
+  "author": "Bear",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bear/gh-events/issues"
+  },
+  "homepage": "https://github.com/bear/gh-events",
+  "dependencies": {
+    "bucker": "^1.0.11",
+    "redis": "^0.12.1",
+    "getconfig": "^0.3.0",
+    "githubhook": "^1.1.2"
+  }
+}
