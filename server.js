@@ -20,7 +20,7 @@ github.on('*', function (event, repo, ref, data) {
         id: uuid.v1(),
         type: 'github',
         parent_id: '',
-        timestamp: moment.utc().unix() * 1000;,
+        timestamp: moment.utc().unix() * 1000,
         payload: { 'repo': repo, 'ref': ref, 'data': data }
     };
 
