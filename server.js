@@ -21,7 +21,7 @@ github.on('*', function (event, repo, ref, data) {
         type: 'github',
         parent_id: '',
         timestamp: moment.utc().unix() * 1000,
-        payload: { 'repo': repo, 'ref': ref, 'data': data }
+        payload: { 'event': event, 'repo': repo, 'ref': ref, 'data': data }
     };
 
     client.publish('github', JSON.stringify(eventData, null, 2));
