@@ -21,8 +21,6 @@ if ( config.webhook ) {
 github.listen();
 
 github.on('*', function cbEvent(event, repo, ref, data) {
-    bucker.log('sending ' + repo + ' ' + ref + ' event');
-
     eventData = {
         id: uuid.v1(),
         type: 'github',
@@ -32,14 +30,16 @@ github.on('*', function cbEvent(event, repo, ref, data) {
     };
 
     if ( config.redis ) {
+        bucker.log('sending ' + repo + ' ' + ref + ' event to redis');
         client.publish('github', JSON.stringify(eventData, null, 2));
     };
 
-    if ( config.wreck ) {
+    if ( config.webhook ) {
+        bucker.log('sending ' + repo + ' ' + ref + ' event to webhook');
         wreck.post(config.webhook.uri, options={'payload': JSON.stringify(eventData, null, 2)},
             function cbWreck(error, resp, payload) {
-                if ( err ) {
-                    bucker.error(err);
+                if ( error ) {
+                    bucker.error(error);
                 } else {
                     bucker.log('webhook called');
                 };
