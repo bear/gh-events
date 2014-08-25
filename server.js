@@ -6,7 +6,7 @@ var moment = require('moment');
 var githubhook = require('githubhook');
 var github = githubhook({ port: config.github.port, logger: bucker });
 
-if config.redis {
+if ( config.redis ) {
     var client = redis.createClient(config.redis.port, config.redis.host);
 
     client.on('error', function (err) {
@@ -14,7 +14,7 @@ if config.redis {
     });
 };
 
-if config.webhook {
+if ( config.webhook ) {
     var wreck = require('wreck');
 };
 
@@ -31,19 +31,19 @@ github.on('*', function cbEvent(event, repo, ref, data) {
         payload: { 'event': event, 'repo': repo, 'ref': ref, 'data': data }
     };
 
-    if config.redis {
+    if ( config.redis ) {
         client.publish('github', JSON.stringify(eventData, null, 2));
     };
 
-    if config.wreck {
+    if ( config.wreck ) {
         wreck.post(config.webhook.uri, options={'payload': JSON.stringify(eventData, null, 2)},
             function cbWreck(error, resp, payload) {
-                if err {
+                if ( err ) {
                     bucker.error(err);
                 } else {
                     bucker.log('webhook called');
                 };
-            };
+            }
         );
     };
 });
