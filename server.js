@@ -35,8 +35,15 @@ github.on('*', function cbEvent(event, repo, ref, data) {
     };
 
     if ( config.webhook ) {
+        var webhookHeader = null;
+
         bucker.log('sending ' + repo + ' ' + ref + ' event to webhook');
-        wreck.post(config.webhook.uri, options={'payload': JSON.stringify(eventData, null, 2)},
+
+        if ( config.webhook.header) {
+            webhookHeader = config.webhook.header;
+        }
+        wreck.post(config.webhook.uri, options={'payload': JSON.stringify(eventData, null, 2), 
+                                                'headers': webhookHeader },
             function cbWreck(error, resp, payload) {
                 if ( error ) {
                     bucker.error(error);
